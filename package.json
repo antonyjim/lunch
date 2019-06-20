@@ -1,0 +1,27 @@
+{
+  "name": "lunch",
+  "version": "1.0.0",
+  "description": "Lunch orderer",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "mysql": "*",
+    "body-parser": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonyjim/lunch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonyjim/lunch/issues"
+  },
+  "homepage": "https://github.com/antonyjim/lunch#readme"
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lunch Ordering</title>
+  <link rel="stylesheet" type="text/css" href="/public/bootstrap.css">
+</head>
+
+<body>
+  <div id="loading">
+    <h1>Please wait</h1>
+  </div>
+  <div id="vue" class="container" style="display: none;">
+    <div>
+      <h2 class="px-5 pt-3">{{ info.tradestyle }}</h2>
+      <h6 class="px-5">{{ info.week }}</h6>
+      <h6><a class="px-5" v-bind:href="info.menu_link" target="_blank">Menu</a></h6>
+    </div>
+    <div class="alert-success alert w-75 mx-auto" v-for="message in successes" role="alert">
+      {{ message.message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+    </div>
+    <div class="alert-danger alert w-75 mx-auto" v-for="message in errors" role="alert">
+      {{ message.message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-lg-8 col-md-10">
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Order
+                </th>
+                <th>
+                  Price
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="order in orders">
+                <td>
+                  {{ order.person }}
+                </td>
+                <td>
+                  {{ order.description }}
+                </td>
+                <td>
+                  {{ order.amount }}
+                </td>
+                <td>
+                  <button v-on:click="modifyOrder" v-bind:id="order.item_id" class="btn btn-primary" data-toggle="modal"
+                    data-target="#modifyOrderModal">Change</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input class="form-control" type="text" v-model="newOrder.person">
+                </td>
+                <td>
+                  <input class="form-control" type="text" v-model="newOrder.description">
+                </td>
+                <td>
+                  <input class="form-control" type="text" v-model="newOrder.amount">
+                </td>
+                <td>
+                  <button v-on:click="addOrder" class="btn btn-success">Add</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div id="modifyOrderModal" tabindex="-1" role="dialog" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modify Order</h5>
+            <button class="close" type="button" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col"></div>
+              <div class="col-lg-8 col-md-10">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input id="name" v-model="modifyOrderData.person" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input id="description" v-model="modifyOrderData.description" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input id="price" v-model="modifyOrderData.amount" class="form-control">
+                </div>
+                <div class="btn-group">
+                  <button v-on:click="submitModifiedOrder" type="button" class="btn btn-primary">Submit</button>
+                  <button v-on:click="deleteOrder" type="button" class="btn btn-danger">Delete</button>
+                </div>
+
+              </div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/public/jq.js"></script>
+  <script src="/public/bootstrap.js"></script>
+  <script src="/public/vue.js"></script>
+  <script src="/public/app.js"></script>
+</body>
+
+</html>
