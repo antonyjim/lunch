@@ -10,9 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "body-parser": "*",
+    "dotenv": "^8.2.0",
     "express": "*",
-    "mysql": "*",
-    "body-parser": "*"
+    "moment": "^2.24.0",
+    "mysql": "*"
   },
   "repository": {
     "type": "git",

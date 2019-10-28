@@ -1,5 +1,5 @@
 (function () {
-
+  'use strict'
   function getOrders() {
     var xhr = new XMLHttpRequest()
     xhr.open('GET', '/api/orders', true)
@@ -11,13 +11,12 @@
   }
 
   function modifyOrder(e) {
-    var ord = vm.orders.filter(function (o) {
-      if (o.item_id == e.target.id) {
-        return o
-      }
+    // Find the order we are looking for
+    var ord = vm.orders.find(function (o) {
+      return o.item_id == e.target.id
     })
 
-    vm.modifyOrderData = ord[0]
+    vm.modifyOrderData = ord
   }
 
   function addOrder() {
@@ -39,6 +38,11 @@
         vm.successes.push({
           message: 'Item successfully inserted'
         })
+
+        // Push the id onto the orders array
+        if (xhr.response.id) {
+          vm.newOrder.id = xhr.response.id
+        }
         vm.orders.push(vm.newOrder)
         vm.newOrder = {
           person: '',

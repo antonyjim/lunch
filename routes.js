@@ -39,9 +39,10 @@ router.get('/orders', (req, res) => {
 router.post('/order', (req, res) => {
   console.log(req.body)
   createOrder(req.body)
-    .then(() => {
+    .then((ins) => {
       res.status(200).json({
-        success: true
+        success: true,
+        id: ins.insertId
       })
     })
     .catch(err => {

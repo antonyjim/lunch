@@ -3,4 +3,5 @@ public/vue.js
 public/jq.js
 public/bootstrap.css
 public/bootstrap.js
-lib/moment.js
+
+.env
